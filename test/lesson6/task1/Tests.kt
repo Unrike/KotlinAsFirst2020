@@ -58,6 +58,7 @@ class Tests {
     @Test
     @Tag("4")
     fun flattenPhoneNumber() {
+        assertEquals("123456798", flattenPhoneNumber("12 --  34- 5 -- 67 -98"))
         assertEquals("+79211234567", flattenPhoneNumber("+7 (921) 123-45-67"))
         assertEquals("123456798", flattenPhoneNumber("12 --  34- 5 -- 67 -98"))
         assertEquals("+12345", flattenPhoneNumber("+12 (3) 4-5"))
@@ -71,16 +72,18 @@ class Tests {
     @Test
     @Tag("5")
     fun bestLongJump() {
-        assertEquals(717, bestLongJump("706 % - 717 - 703"))
+        assertEquals(123, bestLongJump("123 -"))
         assertEquals(-1, bestLongJump("% - - % -"))
         assertEquals(754, bestLongJump("700 717 707 % 754"))
         assertEquals(-1, bestLongJump("700 + 700"))
+        assertEquals(717, bestLongJump("706 % - 717 - 703"))
 
     }
 
     @Test
     @Tag("6")
     fun bestHighJump() {
+        assertEquals(230, bestHighJump("220 + 224 %+ 228 %- 230 + 232 %%- 234 %"))
         assertEquals(226, bestHighJump("226 +"))
         assertEquals(-1, bestHighJump("???"))
         assertEquals(230, bestHighJump("220 + 224 %+ 228 %- 230 + 232 %%- 234 %"))
@@ -93,6 +96,7 @@ class Tests {
         assertEquals(4, plusMinus("2 + 2"))
         assertEquals(6, plusMinus("2 + 31 - 40 + 13"))
         assertEquals(-1, plusMinus("0 - 1"))
+        assertThrows(IllegalArgumentException::class.java) { plusMinus("4 - -2 +") }
         assertThrows(IllegalArgumentException::class.java) { plusMinus("+2") }
         assertThrows(IllegalArgumentException::class.java) { plusMinus("+ 4") }
         assertThrows(IllegalArgumentException::class.java) { plusMinus("4 - -2") }
@@ -114,6 +118,7 @@ class Tests {
     fun mostExpensive() {
         assertEquals("a", mostExpensive("a 0"))
         assertEquals("", mostExpensive(""))
+        assertEquals("а", mostExpensive("а 0"))
         assertEquals("Курица", mostExpensive("Хлеб 39.9; Молоко 62.5; Курица 184.0; Конфеты 89.9"))
         assertEquals("Вино", mostExpensive("Вино 255.0"))
     }

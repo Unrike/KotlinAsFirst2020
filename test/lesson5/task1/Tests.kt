@@ -123,6 +123,7 @@ class Tests {
     fun containsIn() {
         assertTrue(containsIn(mapOf("a" to "z"), mapOf("a" to "z", "b" to "sweet")))
         assertFalse(containsIn(mapOf("a" to "z"), mapOf("a" to "zee", "b" to "sweet")))
+        assertFalse(containsIn(mapOf("a" to "z"), mapOf("a" to "zee", "b" to "sweet")))
     }
 
     @Test
@@ -304,6 +305,7 @@ class Tests {
     @Test
     @Tag("6")
     fun findSumOfTwo() {
+
         assertEquals(
             Pair(-1, -1),
             findSumOfTwo(emptyList(), 1)
